@@ -83,6 +83,7 @@ This count is a minimum, since 540 planets have no recorded temperature. The scr
 | `05_analysis.sql` | Aggregations by discovery method, year and facility |
 | `06_subqueries_habitable.sql` | Subqueries, median vs. average, habitable candidates, CTEs |
 | `column_reference.txt` | Column names and meanings for each table |
+| `exoplanets.csv` | Source data downloaded from the NASA Exoplanet Archive |
 
 ## How to run it
 
