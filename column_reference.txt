@@ -1,0 +1,56 @@
+SPACE PROJECT - COLUMN REFERENCE
+Database: space_project
+
+============================================================
+PLANETS  (one row per planet, 6,464 rows)
+============================================================
+planet_name          TEXT      planet's name (primary key)
+star_name            TEXT      star it orbits (links to stars)
+discovery_method     TEXT      how it was found (Transit, Radial Velocity, etc.)
+discovery_year       INTEGER   year it was confirmed
+discovery_facility   TEXT      telescope or observatory credited
+orbit_days           NUMERIC   length of one orbit, in days
+radius_earths        NUMERIC   size (Earth = 1)
+mass_earths          NUMERIC   mass (Earth = 1)
+temperature_k        NUMERIC   planet temperature, in Kelvin
+
+============================================================
+STARS  (one row per star, 4,857 rows)
+============================================================
+star_name            TEXT      star's name (primary key)
+temperature_k        NUMERIC   star temperature, in Kelvin
+radius_suns          NUMERIC   size (Sun = 1)
+mass_suns            NUMERIC   mass (Sun = 1)
+distance_pc          NUMERIC   distance from Earth, in parsecs (x 3.26 = light-years)
+num_planets          INTEGER   number of planets orbiting this star
+
+============================================================
+HOW THE TABLES CONNECT
+============================================================
+planets.star_name  ->  stars.star_name
+
+JOIN pattern:
+  FROM planets AS p
+  JOIN stars AS s ON p.star_name = s.star_name
+
+Both tables have a column called temperature_k.
+In a JOIN, always write p.temperature_k or s.temperature_k.
+
+============================================================
+EXOPLANETS_RAW  (original NASA data, 6,464 rows)
+============================================================
+Use planets and stars instead. Kept only so the clean
+tables can be rebuilt.
+
+pl_name, hostname, discoverymethod, disc_year, disc_facility,
+pl_orbper, pl_rade, pl_bmasse, pl_eqt, sy_pnum,
+st_teff, st_rad, st_mass, sy_dist
+
+============================================================
+QUICK REMINDERS
+============================================================
+Text values go in single quotes:   WHERE star_name = 'TRAPPIST-1'
+Numbers don't:                     WHERE num_planets >= 6
+One value from a subquery:         use =  >  <
+A list from a subquery:            use IN
+Missing values:                    IS NULL / IS NOT NULL (never = NULL)
